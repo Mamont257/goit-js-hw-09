@@ -15,17 +15,32 @@ const options = {
 flatpickr("#datetime-picker", options);
 
 const btn = document.querySelector("button[data-start]");
+const day = document.querySelector("span[data-days]");
+const hour = document.querySelector("span[data-hours]");
+const minute = document.querySelector("span[data-minutes]");
+const second = document.querySelector("span[data-seconds]");
 btn.addEventListener('click', onClick);
+
+// console.log(hour.textContent);
+
+setInterval(() => {
+    const currentDate = new Date();
+    day.textContent = currentDate.getDay();
+    hour.textContent = currentDate.getHours();
+    minute.textContent = currentDate.getMinutes();
+    second.textContent = currentDate.getSeconds();
+},1000)
 
 
 function onDat(dat) {
     let x = dat.getTime() - date;
+    console.log(x);
     if (x > 0) {
         console.log(true);
         btn.removeAttribute("disabled");
         // console.log(convertMs(x));
 
-        setInterval(() => { console.log(convertMs(x)) }, 1000)
+        // setInterval(() => { console.log(convertMs(x)), x - 1; }, 1000)
 
 
 
