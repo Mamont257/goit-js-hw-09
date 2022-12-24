@@ -42,6 +42,7 @@ function onClick() {
             second.textContent = time.seconds;
         } else {
             btn.setAttribute("disabled", '');
+            clearInterval(intervalId);
         }
     }, 1000)
 }
