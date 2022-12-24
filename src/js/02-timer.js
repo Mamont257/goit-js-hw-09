@@ -23,13 +23,13 @@ btn.addEventListener('click', onClick);
 
 // console.log(hour.textContent);
 
-setInterval(() => {
-    const currentDate = new Date();
-    day.textContent = currentDate.getDay();
-    hour.textContent = currentDate.getHours();
-    minute.textContent = currentDate.getMinutes();
-    second.textContent = currentDate.getSeconds();
-},1000)
+// setInterval(() => {
+//     const currentDate = new Date();
+//     day.textContent = currentDate.getDay();
+//     hour.textContent = currentDate.getHours();
+//     minute.textContent = currentDate.getMinutes();
+//     second.textContent = currentDate.getSeconds();
+// },1000)
 
 
 function onDat(dat) {
@@ -41,6 +41,17 @@ function onDat(dat) {
         // console.log(convertMs(x));
 
         // setInterval(() => { console.log(convertMs(x)), x - 1; }, 1000)
+
+        
+        setInterval(() => {
+            x = x - 1000;
+            let time = convertMs(x);
+            console.log(time);
+            day.textContent = time.days;
+            hour.textContent = time.hours;
+            minute.textContent = time.minutes;
+            second.textContent = time.seconds;
+        },1000)
 
 
 
