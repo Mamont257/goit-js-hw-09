@@ -1,33 +1,37 @@
+import Notiflix from 'notiflix';
 
 
+const form = document.querySelector(".form");
 
+form.addEventListener('submit', onSubmit);
 
+function onSubmit(evt) {
+    evt.preventDefault();
 
+    let delay = Number(form.elements.delay.value);
+    const step = Number(form.elements.step.value);
 
- function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    // Fulfill
-  } else {
-    // Reject
-  }
+    for (i = 1; i <= form.elements.amount.value; i++){
+        createPromise(i, delay)
+            .then(({ position, delay }) => {
+                Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+            })
+            .catch(({ position, delay }) => {
+                Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+            });
+        delay = delay + step;
+    }
 }
-// let promise;
-
 
 function createPromise(position, delay) {
-  promise = new Promise((res, rej) => {
+  return new Promise((res, rej) => {
     const shouldResolve = Math.random() > 0.3;
-    setInterval(() => {
+    setTimeout(() => {
       if (shouldResolve) {
-        res('Good');
+          res({ position: position, delay: delay});
       } else {
-        rej("bed");
+          rej({ position: position, delay: delay});
       }
     }, delay)
   })
-    promise.then(value => console.log(value)).catch(err => console.log(err));
 }
-
-
-createPromise(0, 1000)
