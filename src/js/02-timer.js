@@ -30,28 +30,28 @@ btn.addEventListener('click', onClick);
 //     minute.textContent = currentDate.getMinutes();
 //     second.textContent = currentDate.getSeconds();
 // },1000)
-
+let timerTime = null;
 
 function onDat(dat) {
-    let x = dat.getTime() - date;
-    console.log(x);
-    if (x > 0) {
+    timerTime = dat.getTime() - date;
+    console.log(timerTime);
+    if (timerTime > 0) {
         console.log(true);
         btn.removeAttribute("disabled");
         // console.log(convertMs(x));
 
         // setInterval(() => { console.log(convertMs(x)), x - 1; }, 1000)
 
-        
-        setInterval(() => {
-            x = x - 1000;
-            let time = convertMs(x);
-            console.log(time);
-            day.textContent = time.days;
-            hour.textContent = time.hours;
-            minute.textContent = time.minutes;
-            second.textContent = time.seconds;
-        },1000)
+
+        // setInterval(() => {
+        //     x = x - 1000;
+        //     let time = convertMs(x);
+        //     console.log(time);
+        //     day.textContent = time.days;
+        //     hour.textContent = time.hours;
+        //     minute.textContent = time.minutes;
+        //     second.textContent = time.seconds;
+        // },1000)
 
 
 
@@ -69,7 +69,22 @@ function onDat(dat) {
 }
 
 function onClick(evt) {
-    console.log(evt);
+    // console.log(evt);
+    setInterval(() => {
+        timerTime = timerTime - 1000;
+        console.log(timerTime);
+        if (timerTime > 0) { 
+            let time = convertMs(timerTime);
+            console.log(time);
+            day.textContent = time.days;
+            hour.textContent = time.hours;
+            minute.textContent = time.minutes;
+            second.textContent = time.seconds;
+        } else {
+            btn.setAttribute("disabled", '');
+        }
+    },1000)
+    
 }
 
 
