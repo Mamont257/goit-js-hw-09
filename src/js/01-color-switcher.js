@@ -3,18 +3,26 @@ let timerId = null;
 
 body.addEventListener('click', onClick);
 
-function onClick(evt){
+function onClick(evt) {
     if(evt.target.hasAttribute("data-start")){
         timerId = setInterval(()=>{body.style.backgroundColor = getRandomHexColor()},1000)
 
-        evt.target.setAttribute('disabled', '');
-        evt.target.nextElementSibling.removeAttribute('disabled')
+        setAtb(evt.target);
+        remAtb(evt.target.nextElementSibling);
     } else {
         clearInterval(timerId);
 
-        evt.target.previousElementSibling.removeAttribute('disabled');
-        evt.target.setAttribute('disabled', '');
+        remAtb(evt.target.previousElementSibling);
+        setAtb(evt.target);
     }
+}
+
+function setAtb(value) {
+    value.setAttribute('disabled', '');
+}
+
+function remAtb(value) {
+    value.removeAttribute('disabled');
 }
 
 function getRandomHexColor() {

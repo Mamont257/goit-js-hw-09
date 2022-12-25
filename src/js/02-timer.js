@@ -37,10 +37,7 @@ function onClick() {
         timerTime = timerTime - 1000;
         if (timerTime > 0) { 
             let time = convertMs(timerTime);
-            day.textContent = addLeadingZero(time.days);
-            hour.textContent = addLeadingZero(time.hours);
-            minute.textContent = addLeadingZero(time.minutes);
-            second.textContent = addLeadingZero(time.seconds);
+            changeNumber(time);
             btn.setAttribute("disabled", '');
         } else {
             // btn.setAttribute("disabled", '');
@@ -49,8 +46,14 @@ function onClick() {
     }, 1000)
 }
 
+function changeNumber(time) {
+    day.textContent = addLeadingZero(time.days);
+    hour.textContent = addLeadingZero(time.hours);
+    minute.textContent = addLeadingZero(time.minutes);
+    second.textContent = addLeadingZero(time.seconds);
+}
+
 function addLeadingZero(value){
-    console.log(value);
     if(value < 10){
     return "0" + value;
     } 
