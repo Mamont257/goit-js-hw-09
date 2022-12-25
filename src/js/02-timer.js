@@ -37,15 +37,24 @@ function onClick() {
         timerTime = timerTime - 1000;
         if (timerTime > 0) { 
             let time = convertMs(timerTime);
-            day.textContent = time.days;
-            hour.textContent = time.hours;
-            minute.textContent = time.minutes;
-            second.textContent = time.seconds;
-        } else {
+            day.textContent = addLeadingZero(time.days);
+            hour.textContent = addLeadingZero(time.hours);
+            minute.textContent = addLeadingZero(time.minutes);
+            second.textContent = addLeadingZero(time.seconds);
             btn.setAttribute("disabled", '');
+        } else {
+            // btn.setAttribute("disabled", '');
             clearInterval(intervalId);
         }
     }, 1000)
+}
+
+function addLeadingZero(value){
+    console.log(value);
+    if(value < 10){
+    return "0" + value;
+    } 
+    return value;
 }
 
 function convertMs(ms) {
